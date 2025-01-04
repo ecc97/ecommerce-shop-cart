@@ -21,6 +21,14 @@
         "title": "Comercio Electrónico",
         "description": "Encuentra productos y servicios de la comunidad",
         "welcome": "Bienvenido",
-        "logoutButton": "Cerrar Sesión"
+        "logoutButton": "Cerrar Sesión",
+        "cartButton": "Carrito de Compras",
+        "loginButton": "Iniciar sesión",
+        "registerButton": "Registrarse",
+        "productListTitle": "Productos",
+        "HeroHeading": "Colección de verano",
+        "HeroText": "Descubre nuestra última colección de artículos de moda premium. Hecho a mano con materiales de calidad y diseñado para el estilo de vida moderno.",
+        "HeroButtonBuy": "Comprar ahora",
+        "HeroButtonMore": "Aprende Más"
     }
 }

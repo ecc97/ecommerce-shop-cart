@@ -21,6 +21,14 @@
         "title": "E-Commerce",
         "description": "Find products and community services",
         "welcome": "Welcome",
-        "logoutButton": "Log out"
+        "logoutButton": "Log out",
+        "cartButton": "Shopping Cart",
+        "loginButton": "Login",
+        "registerButton": "Register",
+        "productListTitle": "Products",
+        "HeroHeading": "Summer Collection",
+        "HeroText": "Discover our latest collection of premium fashion items. Crafted with quality materials and designed for the modern lifestyle.",
+        "HeroButtonBuy": "Shop Now",
+        "HeroButtonMore": "Learn More"
     }
 }
