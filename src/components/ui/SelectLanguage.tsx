@@ -10,11 +10,11 @@ export default function SelectLanguage():React.ReactElement {
     };
 
     return (
-        <div>
-            <select onChange={handleSelectLanguage}>
+        <>
+            <select onChange={handleSelectLanguage} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-1 md:p-2">
                 <option value="es">Español</option>
                 <option value="en">English</option>
             </select>
-        </div>
+        </>
     )
 }
