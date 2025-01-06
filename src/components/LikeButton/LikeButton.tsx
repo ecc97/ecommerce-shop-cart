@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { toggleLike, setLikes } from "@/redux/features/like/LikeSlice";
 import styled from "styled-components";
+import { useTranslations } from "next-intl";
 
 const LikeButtonStyled = styled.button<{ liked: boolean }>`
   background-color: ${(props) => (props.liked ? "red" : "grey")};
@@ -41,7 +42,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ productId }) => {
 
   return (
     <LikeButtonStyled liked={isLiked} onClick={handleToggleLike}>
-      {isLiked ? "Liked" : "Like"}
+      {isLiked ? useTranslations("ProductsPageView")("unlikeButton") : useTranslations("ProductsPageView")("likeButton")}
     </LikeButtonStyled>
   );
 };

@@ -18,17 +18,22 @@
         "linkLogin": "Inicia sesión ahora"
     },
     "HomePageView": {
-        "title": "Comercio Electrónico",
-        "description": "Encuentra productos y servicios de la comunidad",
-        "welcome": "Bienvenido",
-        "logoutButton": "Cerrar Sesión",
-        "cartButton": "Carrito de Compras",
         "loginButton": "Iniciar sesión",
         "registerButton": "Registrarse",
-        "productListTitle": "Productos",
         "HeroHeading": "Colección de verano",
         "HeroText": "Descubre nuestra última colección de artículos de moda premium. Hecho a mano con materiales de calidad y diseñado para el estilo de vida moderno.",
         "HeroButtonBuy": "Comprar ahora",
         "HeroButtonMore": "Aprende Más"
+    },
+    "ProductsPageView": {
+        "welcome": "Bienvenido",
+        "description": "Encuentra productos y servicios de la comunidad",
+        "cartLink": "Carrito de Compras",
+        "productListTitle": "Productos",
+        "cartButton": "Añadir al carrito",
+        "likeButton": "Me gusta",
+        "unlikeButton": "No me gusta",
+        "viewDetailsButton": "Ver detalles",
+        "logoutButton": "Cerrar Sesión"
     }
 }

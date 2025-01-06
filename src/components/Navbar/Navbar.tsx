@@ -9,17 +9,17 @@ import Link from "next/link";
 import { CiLogout } from "react-icons/ci";
 
 interface NavbarProps {
-    children: React.ReactNode
+    children?: React.ReactNode
 }
 
 const Navbar: React.FC<NavbarProps> = ( { children }) => {
     const { status, data: _session } = useSession();
-    const t = useTranslations("HomePageView")
+    const t = useTranslations("ProductsPageView");
     const router = useRouter();
 
     const handleSignOut = async () => {
         await signOut({ redirect: false});
-        router.push("/login");
+        router.push("/");
     }
 
     return (
@@ -27,9 +27,15 @@ const Navbar: React.FC<NavbarProps> = ( { children }) => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center">
-                        <Link href="/">
-                            <h1 className="text-2xl italic">HubHobby</h1>
-                        </Link>
+                        {status === "authenticated" ? (
+                            <Link href="/products">
+                                <h1 className="text-white text-2xl font-medium hover:text-sky-500 transition-colors">HubHobby</h1>
+                            </Link>
+                        ): (
+                            <Link href="/">
+                                <h1 className="text-2xl italic">HubHobby</h1>
+                            </Link>
+                        )}
                     </div>
                     {children}
                     {status === "authenticated" ? (

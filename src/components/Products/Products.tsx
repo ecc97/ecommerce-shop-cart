@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Product } from '@/interface/IProducts';
 import { ProductsContainer } from './StyledProduct';
 import ProductCard from '../ProductCard/ProductCard';
+import { useTranslations } from 'next-intl';
 
 
 const Products = () => {
@@ -19,8 +20,8 @@ const Products = () => {
     }, []);
 
     return (
-        <div>
-            <h1>Productos</h1>
+        <article className='flex flex-col gap-4'>
+            <h1 className='text-3xl font-bold my-4 text-center md:text-start px-4 sm:px-8 lg:px-36'>{useTranslations("ProductsPageView")("productListTitle")}</h1>
             <ProductsContainer>
                 {products.map(product => (
                     <ProductCard 
@@ -29,7 +30,7 @@ const Products = () => {
                   />
                 ))}
             </ProductsContainer>
-        </div>
+        </article>
     );
 };
 

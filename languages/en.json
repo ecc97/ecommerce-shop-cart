@@ -18,17 +18,22 @@
         "linkLogin": "Login now"
     },
     "HomePageView": {
-        "title": "E-Commerce",
-        "description": "Find products and community services",
-        "welcome": "Welcome",
-        "logoutButton": "Log out",
-        "cartButton": "Shopping Cart",
         "loginButton": "Login",
         "registerButton": "Register",
-        "productListTitle": "Products",
         "HeroHeading": "Summer Collection",
         "HeroText": "Discover our latest collection of premium fashion items. Crafted with quality materials and designed for the modern lifestyle.",
         "HeroButtonBuy": "Shop Now",
         "HeroButtonMore": "Learn More"
+    },
+    "ProductsPageView": {
+        "welcome": "Welcome",
+        "description": "Find products and community services",
+        "cartLink": "Shopping Cart",
+        "productListTitle": "Products",
+        "cartButton": "Add to Cart",
+        "likeButton": "Like",
+        "unlikeButton": "Unlike",
+        "viewDetailsButton": "View Details",
+        "logoutButton": "Log out"
     }
 }

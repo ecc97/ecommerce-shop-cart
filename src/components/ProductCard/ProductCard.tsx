@@ -6,6 +6,7 @@ import { Product } from "@/interface/IProducts";
 import LikeButton from "../LikeButton/LikeButton";
 import styled from "styled-components";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 const Card = styled.div`
     width: auto;
@@ -97,11 +98,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <Image src={product.image} alt={product.title} />
             <Title>{product.title}</Title>
             <Price>${product.price}</Price>
-            <ButtonAddCart onClick={handleAddCart}>Add to Cart</ButtonAddCart>
-            <LikeButton productId={product.id} />
-            <Link href={`/details/${product.id}`} passHref>
-                <ButtonDetails>Ver detalles</ButtonDetails>
-            </Link>
+            <div className="flex gap-2 flex-wrap justify-center my-2">
+                <ButtonAddCart onClick={handleAddCart}>{useTranslations("ProductsPageView")("cartButton")}</ButtonAddCart>
+                <LikeButton productId={product.id} />
+                <Link href={`/details/${product.id}`} passHref className="mt-2">
+                    <ButtonDetails>{useTranslations("ProductsPageView")("viewDetailsButton")}</ButtonDetails>
+                </Link>
+            </div>
         </Card>
     );
 };
