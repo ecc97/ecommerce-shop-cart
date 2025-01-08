@@ -1,7 +1,7 @@
 "use client";  
 import React from "react";
-import SelectLanguage from "../ui/SelectLanguage";
-import { StyleNavbar } from "./StyledNavbar";
+import SelectLanguage from "../Switch/SelectLanguage";
+import { StyleNavbar } from "../ui/StyledNavbar";
 import { useSession, signOut } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";

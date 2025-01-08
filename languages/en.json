@@ -35,5 +35,11 @@
         "unlikeButton": "Unlike",
         "viewDetailsButton": "View Details",
         "logoutButton": "Log out"
+    },
+    "ShoppingCartView": {
+        "title": "Shopping Cart",
+        "emptyCart": "Your cart is empty",
+        "removeButton": "Remove",
+        "loading": "Loading..."
     }
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Product } from '@/interface/IProducts';
-import { ProductsContainer } from './StyledProduct';
+import { ProductsContainer } from '../ui/StyledProduct';
 import ProductCard from '../ProductCard/ProductCard';
 import { useTranslations } from 'next-intl';
 

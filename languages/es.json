@@ -35,5 +35,11 @@
         "unlikeButton": "No me gusta",
         "viewDetailsButton": "Ver detalles",
         "logoutButton": "Cerrar Sesión"
+    },
+    "ShoppingCartView": {
+        "title": "Carrito de compras",
+        "emptyCart": "Tu carrito esta vacio",
+        "removeButton": "Quitar",
+        "loading": "Cargando..."
     }
 }
