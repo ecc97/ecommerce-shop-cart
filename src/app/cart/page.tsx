@@ -2,10 +2,14 @@
 import React from "react"
 import { useEffect } from "react"
 import { useSession } from "next-auth/react"
-import { useAppSelector, useAppDispatch} from "@/redux/hooks"
-import { removeFromCart, setCart } from "@/redux/features/cart/CartSlice"
-import { ProductsContainer } from "@/components/Products/StyledProduct"
+import { useAppSelector, useAppDispatch } from "@/redux/hooks"
+import { setCart } from "@/redux/features/cart/CartSlice"
+import Navbar from "@/components/Navbar/Navbar"
+import { ProductsContainer } from "@/components/ui/StyledProduct"
 import ProductCard from "@/components/ProductCard/ProductCard"
+import { useTranslations } from "next-intl"
+import { useRouter } from "next/navigation"
+import { SectionCart } from "@/components/ui/StyledCart"
 
 
 
@@ -14,37 +18,57 @@ const CartPage = () => {
     const dispatch = useAppDispatch()
     const cartItems = useAppSelector((state) => state.cart.products)
     const filteredCartItems = cartItems.filter(item => item.idUser === session?.user.id)
-    
-    const handleRemoveFromCart = (id: number) => {
-        dispatch(removeFromCart(id))
-    }
+    const [isLoading, setIsLoading] = React.useState<boolean>(true)
+    const router = useRouter()
+    const t = useTranslations("ShoppingCartView")
+
 
     useEffect(() => {
-        const savedCart = localStorage.getItem("cart");
-        if (savedCart) {
-          dispatch(setCart(JSON.parse(savedCart)));
+        if (session) {
+            const savedCart = localStorage.getItem("cart")
+            if (savedCart) {
+                dispatch(setCart(JSON.parse(savedCart)))
+            }
+        } else {
+            router.push("/login")
         }
-      }, [dispatch]);
+    }, [dispatch, session]);
+
+    useEffect(() => {
+        if (cartItems.length > 0) {
+            localStorage.setItem("cart", JSON.stringify(cartItems))
+        }
+    }, [cartItems])
+
+    useEffect(() => {
+        if (session && cartItems.length > 0) {
+            setIsLoading(false)
+        }
+    }, [session, cartItems]);
 
     return (
-        <div>
-            <h1>Carrito de compras</h1>
-            {filteredCartItems.length === 0? (
-                <p>Tu carrito está vacío.</p>
-            ) : (
-                <ProductsContainer>
-                    {filteredCartItems.map((item) => (
-                        <div>
-                            <ProductCard 
-                            key={item.id} 
-                            product={item} 
-                        />
-                            <button onClick={() => handleRemoveFromCart(item.id)}>Quitar</button>
-                        </div>
-                    ))}
-                </ProductsContainer>
-            )}
-        </div>
+        <>
+            <Navbar />
+            <main className="min-h-screen pt-20">
+                <SectionCart>
+                    <h1 className="text-3xl font-bold mb-4 text-center md:text-start">{t("title")}</h1>
+                    {isLoading ? (<p>{t("loading")}</p>) :
+                    filteredCartItems.length === 0 ? (
+                        <p className="text-lg text-center md:text-start">{t("emptyCart")}</p>
+                    ) : (
+                        <ProductsContainer>
+                            {filteredCartItems.map((item) => (
+                                <ProductCard
+                                    key={item.id}
+                                    product={item}
+                                />
+
+                            ))}
+                        </ProductsContainer>
+                    )}
+                </SectionCart>
+            </main>
+        </>
     )
 }
 

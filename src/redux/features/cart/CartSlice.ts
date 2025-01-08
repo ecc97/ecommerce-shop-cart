@@ -26,16 +26,13 @@ export const cartSlice = createSlice({
         },
         addToCart: (state, action: PayloadAction<ProductItem>) => {
             state.products.push(action.payload);
-            localStorage.setItem("cart", JSON.stringify(state.products));
         },
         removeFromCart: (state, action: PayloadAction<number>) => {
             state.products = state.products.filter(product => product.id !== action.payload);
             // state.products.splice(action.payload, 1);
-            localStorage.setItem("cart", JSON.stringify(state.products));
         },
         clearCart: (state) => {
             state.products = [];
-            localStorage.removeItem("cart");
         }
     }
 })

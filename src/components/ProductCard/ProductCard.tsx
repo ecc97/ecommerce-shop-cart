@@ -1,18 +1,21 @@
 
 import { useSession, signIn } from "next-auth/react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { addToCart } from "@/redux/features/cart/CartSlice";
+import { addToCart, removeFromCart } from "@/redux/features/cart/CartSlice";
 import { Product } from "@/interface/IProducts";
 import LikeButton from "../LikeButton/LikeButton";
 import styled from "styled-components";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
+import { BiTrash } from "react-icons/bi";
 
 const Card = styled.div`
     width: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
     max-width: 300px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -53,7 +56,7 @@ const ButtonAddCart = styled.button`
     }
 `
 
-const ButtonDetails = styled.a`
+const ButtonDetails = styled.button`
     background-color: #0070f3;
     color: white;
     padding: 10px 16px;
@@ -80,6 +83,7 @@ interface CardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     const { data: session } = useSession()
+    const pathname = usePathname();
     const dispatch = useAppDispatch();
 
     const handleAddCart = () => {
@@ -93,6 +97,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         dispatch(addToCart(productOfUser));
 
     };
+
+    const handleRemoveFromCart = (id: number) => {
+            dispatch(removeFromCart(id))
+            localStorage.removeItem(`cart`)
+    }
+
     return (
         <Card>
             <Image src={product.image} alt={product.title} />
@@ -101,9 +111,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <div className="flex gap-2 flex-wrap justify-center my-2">
                 <ButtonAddCart onClick={handleAddCart}>{useTranslations("ProductsPageView")("cartButton")}</ButtonAddCart>
                 <LikeButton productId={product.id} />
-                <Link href={`/details/${product.id}`} passHref className="mt-2">
+                <Link href={`/details/${product.id}`} passHref>
                     <ButtonDetails>{useTranslations("ProductsPageView")("viewDetailsButton")}</ButtonDetails>
                 </Link>
+                {session && pathname === "/cart" && (
+                    <button onClick={() => handleRemoveFromCart(product.id)} style={{ position: "absolute", top: "10px", right: "10px", color: "red"}}><BiTrash title={useTranslations("ShoppingCartView")("removeButton")} size={20} /></button>
+                )}
             </div>
         </Card>
     );
