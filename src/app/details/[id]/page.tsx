@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Product } from "@/interface/IProducts";
+import Navbar from "@/components/Navbar/Navbar";
+import ProductDetailText from "@/components/ProductDetailText/ProductDetail";
 
 const ProductDetails = ({ params }: { params: { id: string } }) => {
     const [product, setProduct] = useState<Product | null>(null);
@@ -26,22 +28,28 @@ const ProductDetails = ({ params }: { params: { id: string } }) => {
     }, [params.id]);
 
     if (loading) {
-        return <p>Cargando...</p>; // Muestra un mensaje mientras se cargan los datos
+        return <p>Cargando...</p>; 
     }
 
     if (!product) {
-        return <p>No se encontró el producto.</p>; // Muestra este mensaje si no se encontró el producto
+        return <p>No se encontró el producto.</p>; 
     }
     
 
     return (
-        <div>
-            <h1>{product.title}</h1>
-            <img src={product.image} alt={product!.title} />
-            <p>{product.description}</p>
-            <p><strong>Category:</strong> {product.category}</p>
-            <p><strong>Price:</strong> ${product.price}</p>
-        </div>
+        <>
+            <Navbar />
+            <main className="flex flex-col justify-center min-h-screen pt-20 lg:pt-0">
+                <article className="flex flex-col gap-2 md:flex-row max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-4 rounded-3xl shadow-2xl">
+                    <div className="md:w-1/2 flex-1">
+                        <div className="p-3">
+                            <img src={product.image} alt={product.title} className="w-full"/>
+                        </div>
+                    </div>
+                    <ProductDetailText product={product} />
+                </article>
+            </main>
+        </>
     );
 };
 
