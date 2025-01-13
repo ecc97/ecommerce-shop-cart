@@ -54,6 +54,11 @@ const ButtonAddCart = styled.button`
     &:hover {
         background-color: #45a049;
     }
+
+    &:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+    }
 `
 
 const ButtonDetails = styled.button`
@@ -109,7 +114,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <Title>{product.title}</Title>
             <Price>${product.price}</Price>
             <div className="flex gap-2 flex-wrap justify-center my-2">
-                <ButtonAddCart onClick={handleAddCart}>{useTranslations("ProductsPageView")("cartButton")}</ButtonAddCart>
+                <ButtonAddCart onClick={handleAddCart} disabled={pathname === "/cart" ? true : false}>{useTranslations("ProductsPageView")("cartButton")}</ButtonAddCart>
                 <LikeButton productId={product.id} />
                 <Link href={`/details/${product.id}`} passHref>
                     <ButtonDetails>{useTranslations("ProductsPageView")("viewDetailsButton")}</ButtonDetails>

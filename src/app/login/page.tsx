@@ -96,7 +96,7 @@ export default function LoginPage() {
 
   React.useEffect(() => {
     if (status === 'authenticated') {
-      router.push('/home')
+      router.push('/products')
     }
   }, [status])
 

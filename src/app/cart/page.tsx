@@ -1,6 +1,5 @@
 'use client'
-import React from "react"
-import { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useAppSelector, useAppDispatch } from "@/redux/hooks"
 import { setCart } from "@/redux/features/cart/CartSlice"
@@ -11,40 +10,40 @@ import { useTranslations } from "next-intl"
 import { useRouter } from "next/navigation"
 import { SectionCart } from "@/components/ui/StyledCart"
 
-
-
 const CartPage = () => {
-    const { data: session } = useSession()
+    const { data: session, status } = useSession()
     const dispatch = useAppDispatch()
     const cartItems = useAppSelector((state) => state.cart.products)
-    const filteredCartItems = cartItems.filter(item => item.idUser === session?.user.id)
-    const [isLoading, setIsLoading] = React.useState<boolean>(true)
+    const [isLoading, setIsLoading] = useState(true)
     const router = useRouter()
     const t = useTranslations("ShoppingCartView")
 
+    const filteredCartItems = cartItems.filter(item => 
+        session?.user?.id ? item.idUser === session.user.id : false
+    )
 
     useEffect(() => {
-        if (session) {
+        
+        if (status === "unauthenticated") {
+            router.push("/login")
+            return
+        }
+        
+        if (status === "authenticated") {
             const savedCart = localStorage.getItem("cart")
             if (savedCart) {
                 dispatch(setCart(JSON.parse(savedCart)))
             }
-        } else {
-            router.push("/login")
+            setIsLoading(false)
         }
-    }, [dispatch, session]);
+        
+    }, [status, dispatch, router]);
 
     useEffect(() => {
         if (cartItems.length > 0) {
             localStorage.setItem("cart", JSON.stringify(cartItems))
         }
-    }, [cartItems])
-
-    useEffect(() => {
-        if (session && cartItems.length > 0) {
-            setIsLoading(false)
-        }
-    }, [session, cartItems]);
+    }, [cartItems]);
 
     return (
         <>
@@ -52,8 +51,9 @@ const CartPage = () => {
             <main className="min-h-screen pt-20">
                 <SectionCart>
                     <h1 className="text-3xl font-bold mb-4 text-center md:text-start">{t("title")}</h1>
-                    {isLoading ? (<p>{t("loading")}</p>) :
-                    filteredCartItems.length === 0 ? (
+                    {isLoading ? (
+                        <p>{t("loading")}</p>
+                    ) : filteredCartItems.length === 0 ? (
                         <p className="text-lg text-center md:text-start">{t("emptyCart")}</p>
                     ) : (
                         <ProductsContainer>
@@ -62,7 +62,6 @@ const CartPage = () => {
                                     key={item.id}
                                     product={item}
                                 />
-
                             ))}
                         </ProductsContainer>
                     )}
