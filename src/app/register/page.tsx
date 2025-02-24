@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import styled from 'styled-components'
 import Navbar from '@/components/Navbar/Navbar'
+import { showSuccessRegister, showRegistrationError } from '@/components/Alerts'
 
 const PageContainer = styled.div`
   display: flex;
@@ -122,8 +123,16 @@ export default function RegisterPage() {
 
       const data = await res.json()
       console.log(data)
+
+      await showSuccessRegister()
+
+      router.push("/login")
     } catch (error) {
-      setError((error as Error).message)
+      const errorMessage = (error as Error).message;
+
+      showRegistrationError(errorMessage)
+
+      setError(errorMessage);
     } finally {
       setLoading(false)
     }

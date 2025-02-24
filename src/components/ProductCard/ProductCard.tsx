@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { BiTrash } from "react-icons/bi";
+import { showToast } from "../Alerts";
 
 const Card = styled.div`
     width: auto;
@@ -90,6 +91,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     const { data: session } = useSession()
     const pathname = usePathname();
     const dispatch = useAppDispatch();
+    const t = useTranslations("ProductsPageView");
 
     const handleAddCart = () => {
         if (!session) return signIn();
@@ -100,6 +102,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         }
 
         dispatch(addToCart(productOfUser));
+
+        showToast("success", t("addToCartSuccess"));
 
     };
 

@@ -34,6 +34,7 @@
         "likeButton": "Like",
         "unlikeButton": "Unlike",
         "viewDetailsButton": "View Details",
+        "addToCartSuccess": "Product added to cart",
         "loading": "Loading...",
         "logoutButton": "Log out"
     },
