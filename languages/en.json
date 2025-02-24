@@ -34,6 +34,7 @@
         "likeButton": "Like",
         "unlikeButton": "Unlike",
         "viewDetailsButton": "View Details",
+        "loading": "Loading...",
         "logoutButton": "Log out"
     },
     "ShoppingCartView": {
@@ -41,5 +42,12 @@
         "emptyCart": "Your cart is empty",
         "removeButton": "Remove",
         "loading": "Loading..."
+    },
+    "ProductDetailView": {
+        "title": "Product Details",
+        "category": "Category",
+        "price": "Price",
+        "addToCart": "Add to Cart",
+        "removeFromCart": "Remove from Cart"
     }
 }

@@ -34,6 +34,7 @@
         "likeButton": "Me gusta",
         "unlikeButton": "No me gusta",
         "viewDetailsButton": "Ver detalles",
+        "loading": "Cargando...",
         "logoutButton": "Cerrar Sesión"
     },
     "ShoppingCartView": {
@@ -41,5 +42,12 @@
         "emptyCart": "Tu carrito esta vacio",
         "removeButton": "Quitar",
         "loading": "Cargando..."
+    },
+    "ProductDetailView": {
+        "title": "Detalles del producto",
+        "category": "Categoría",
+        "price": "Precio",
+        "addToCart": "Añadir al carrito",
+        "removeFromCart": "Quitar del carrito"
     }
 }
