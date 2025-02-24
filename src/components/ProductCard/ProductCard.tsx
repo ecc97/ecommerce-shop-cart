@@ -62,7 +62,7 @@ const ButtonAddCart = styled.button`
 `
 
 const ButtonDetails = styled.button`
-    background-color: #0070f3;
+    background-color: #cfcc12;
     color: white;
     padding: 10px 16px;
     border: none;
@@ -72,7 +72,7 @@ const ButtonDetails = styled.button`
     transition: background-color 0.3s ease;
     
     &:hover {
-        background-color: #005bb5;
+        background-color: #b1922b;
     }
 `;
 
@@ -80,11 +80,11 @@ interface ProductCardProps {
     product: Product
 }
 
-interface CardProps {
-    title: string;
-    price: string;
-    image: string;
-}
+// interface CardProps {
+//     title: string;
+//     price: string;
+//     image: string;
+// }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     const { data: session } = useSession()

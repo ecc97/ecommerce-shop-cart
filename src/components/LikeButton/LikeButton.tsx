@@ -5,8 +5,8 @@ import { toggleLike, setLikes } from "@/redux/features/like/LikeSlice";
 import styled from "styled-components";
 import { useTranslations } from "next-intl";
 
-const LikeButtonStyled = styled.button<{ liked: boolean }>`
-  background-color: ${(props) => (props.liked ? "red" : "grey")};
+const LikeButtonStyled = styled.button<{ $liked: boolean }>`
+  background-color: ${(props) => (props.$liked ? "red" : "#0070f3")};
   color: white;
   padding: 10px 16px;
   border: none;
@@ -15,7 +15,7 @@ const LikeButtonStyled = styled.button<{ liked: boolean }>`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: ${(props) => (props.liked ? "#cc0000" : "#666666")};
+    background-color: ${(props) => (props.$liked ? "#cc0000" : "#003cac")};
   }
 `;
 
@@ -24,7 +24,7 @@ interface LikeButtonProps {
 }
 
 const LikeButton: React.FC<LikeButtonProps> = ({ productId }) => {
-  const { data: session } = useSession();
+  const { data: _session } = useSession();
   const dispatch = useAppDispatch();
   const isLiked = useAppSelector((state) => state.liker.likes[productId]);
   
@@ -41,7 +41,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ productId }) => {
   }, [dispatch]);
 
   return (
-    <LikeButtonStyled liked={isLiked} onClick={handleToggleLike}>
+    <LikeButtonStyled $liked={isLiked} onClick={handleToggleLike}>
       {isLiked ? useTranslations("ProductsPageView")("unlikeButton") : useTranslations("ProductsPageView")("likeButton")}
     </LikeButtonStyled>
   );

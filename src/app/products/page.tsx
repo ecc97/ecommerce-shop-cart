@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 import Navbar from "@/components/Navbar/Navbar";
 import Products from "@/components/Products/Products";
 import { FaCartPlus } from "react-icons/fa";
-
 import React from 'react'
 import Link from "next/link";
 
@@ -14,8 +13,6 @@ function HomePage() {
     const t = useTranslations()
     const { status, data: session } = useSession()
     const router = useRouter();
-    const [loading, setLoading] = React.useState(true);
-
 
     useEffect(() => {
         if (status === "unauthenticated") {
@@ -23,7 +20,7 @@ function HomePage() {
         }
     }, [status])
 
-    if (status === "loading") return <div>Loading...</div>
+    if (status === "loading") return <div>{t("ProductsPageView.loading")}</div>
     console.log(session?.user.email)
     console.log(session?.user.username)
 
