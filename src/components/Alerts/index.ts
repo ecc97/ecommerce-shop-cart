@@ -1,20 +1,20 @@
 import Swal, { SweetAlertIcon } from "sweetalert2";
 
-export const showSuccessRegister = async () => {
+export const showSuccessRegister = async (title?: string, text?: string) => {
     return Swal.fire({
         icon: 'success',
-        title: '¡Registro Exitoso!',
-        text: 'Tu cuenta ha sido creada correctamente',
+        title: title,
+        text: text,
         confirmButtonColor: '#3085d6',
         timer: 2000,
         timerProgressBar: true,
     });
 };
 
-export const showRegistrationError = (errorMessage: string) => {
+export const showRegistrationError = (title: string, errorMessage: string) => {
     return Swal.fire({
         icon: 'error',
-        title: 'Error de registro',
+        title: title,
         text: errorMessage,
         confirmButtonColor: '#3085d6',
     });

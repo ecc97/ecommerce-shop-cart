@@ -26,7 +26,9 @@ const FormCard = styled.div`
   max-width: 400px;
 `
 
-const Title = styled.h1`
+const Title = styled.h2`
+  font-size: 2rem;
+  font-weight: bold;
   text-align: center;
   margin-bottom: 1.5rem;
   color: #333;
@@ -111,7 +113,8 @@ export default function LoginPage() {
       })
 
       if (result?.error) {
-        setError(result.error)
+        setError(traduction("invalidCredentials"))
+        console.error(result.error)
       } else {
         setLoginState(initialLoginState)
         setError(null)
@@ -124,7 +127,7 @@ export default function LoginPage() {
       }
 
     } catch (error) {
-      setError('Hubo un error iniciando sesión.')
+      setError(traduction("someError"))
       setLoginState(initialLoginState)
     }
   }

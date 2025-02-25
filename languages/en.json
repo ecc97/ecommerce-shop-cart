@@ -5,7 +5,9 @@
         "password": "Password",
         "buttonLogin": "Login",
         "promptText": "Do you not have an account?",
-        "linkRegister": "Register now" 
+        "linkRegister": "Register now",
+        "invalidCredentials": "Invalid email or password",
+        "someError": "Something went wrong"
     },
     "RegisterView": {
         "title": "Create an account",
@@ -15,7 +17,13 @@
         "confirmPassword": "Confirm Password",
         "buttonRegister": "Register",
         "promptText": "Already have you an account?",
-        "linkLogin": "Login now"
+        "linkLogin": "Login now",
+        "accountCreated": "Account created",
+        "accountCreatedText": "Your account has been created successfully",
+        "passwordsDontMatch": "Passwords do not match",
+        "alreadyExists": "Email already exists",
+        "showErrorAlert": "Registration Error",
+        "someError": "Something went wrong"
     },
     "HomePageView": {
         "loginButton": "Login",
@@ -50,5 +58,10 @@
         "price": "Price",
         "addToCart": "Add to Cart",
         "removeFromCart": "Remove from Cart"
+    },
+    "ErrorsView": {
+        "invalidCredentials": "Invalid email or password",
+        "register": "Email already in use",
+        "404": "Page not found"
     }
 }

@@ -5,7 +5,9 @@
         "password": "Contraseña",
         "buttonLogin": "Iniciar Sesión",
         "promptText": "No tienes una cuenta?",
-        "linkRegister": "Regístrate ahora" 
+        "linkRegister": "Regístrate ahora",
+        "invalidCredentials": "Correo electrónico o contraseña incorrectos",
+        "someError": "Hubo un error iniciando sesión."
     },
     "RegisterView": {
         "title": "Crea una cuenta",
@@ -15,7 +17,13 @@
         "confirmPassword": "Confirmar Contraseña",
         "buttonRegister": "Registrarse",
         "promptText": "Ya tienes una cuenta?",
-        "linkLogin": "Inicia sesión ahora"
+        "linkLogin": "Inicia sesión ahora",
+        "accountCreated": "¡Registro Exitoso!",
+        "accountCreatedText": "Tu cuenta ha sido creada correctamente",
+        "passwordsDontMatch": "Las contraseñas no coinciden",
+        "alreadyExists": "Correo electrónico ya esta en uso",
+        "showErrorAlert": "Error de registro",
+        "someError": "Hubo un error registrando la cuenta"
     },
     "HomePageView": {
         "loginButton": "Iniciar sesión",
@@ -50,5 +58,10 @@
         "price": "Precio",
         "addToCart": "Añadir al carrito",
         "removeFromCart": "Quitar del carrito"
+    },
+    "ErrorsView": {
+        "invalidCredentials": "Correo electrónica o contraseña incorrectos",
+        "register": "Correo electrónico ya esta en uso",
+        "404": "Página no encontrada"
     }
 }

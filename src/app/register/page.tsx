@@ -25,7 +25,9 @@ const FormCard = styled.div`
   max-width: 400px;
 `
 
-const Title = styled.h1`
+const Title = styled.h2`
+  font-size: 2rem;
+  font-weight: bold;
   text-align: center;
   margin-bottom: 1.5rem;
   color: #333;
@@ -103,7 +105,7 @@ export default function RegisterPage() {
     setError('')
   
     if (registerState.password!== registerState.passwordConfirm) {
-      setError('Las contraseñas no coinciden')
+      setError(traduction("passwordsDontMatch"))
       setLoading(false)
       return
     }
@@ -118,21 +120,24 @@ export default function RegisterPage() {
       })
       if (!res.ok) {
         const errorData = await res.json()
+        console.error(errorData.message)
         throw new Error( errorData.message || "Error al registrar la cuenta")
       }
 
       const data = await res.json()
       console.log(data)
 
-      await showSuccessRegister()
+      await showSuccessRegister(traduction("accountCreated"), traduction("accountCreatedText"))
 
       router.push("/login")
     } catch (error) {
       const errorMessage = (error as Error).message;
+      console.error(errorMessage)
+      const errorTitle = traduction("showErrorAlert")
+      const showErrorMessage = traduction("alreadyExists")
+      showRegistrationError(errorTitle, showErrorMessage)
 
-      showRegistrationError(errorMessage)
-
-      setError(errorMessage);
+      setError(traduction("alreadyExists"));
     } finally {
       setLoading(false)
     }
