@@ -8,7 +8,7 @@ import { getUsers, addUser } from "@/utils/users";
 
 const users = getUsers()
 
-export async function POST(req: Response) {
+export async function POST(req: Request) {
     const { username, email, password } = await req.json();
 
     // Verificar si el usuario ya existe
