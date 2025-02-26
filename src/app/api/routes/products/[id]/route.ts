@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(_request: Request, { params }: { params: { id: string } }) {
     try {
         const { id } = params;
         const response = await fetch(`https://fakestoreapi.com/products/${id}`);
@@ -13,7 +13,9 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 
         
         return NextResponse.json(data);
-    } catch (error) {
+    } catch (error: unknown) {
+        const err = error as Error;
+        console.error("Error al obtener el producto:", err.message);
         return NextResponse.json({ message: "Error al obtener el producto." }, { status: 500 });
     }
 }

@@ -18,7 +18,7 @@ function HomePage() {
         if (status === "unauthenticated") {
             router.push("/login")
         }
-    }, [status])
+    }, [status, router])
 
     if (status === "loading") return <div>{t("ProductsPageView.loading")}</div>
     console.log(session?.user.email)

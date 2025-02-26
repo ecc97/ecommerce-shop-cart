@@ -13,9 +13,11 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ( { children }) => {
-    const { status, data: _session } = useSession();
+    const { status, data: session } = useSession();
     const t = useTranslations("ProductsPageView");
     const router = useRouter();
+
+    console.log(session?.user.username);
 
     const handleSignOut = async () => {
         await signOut({ redirect: false});

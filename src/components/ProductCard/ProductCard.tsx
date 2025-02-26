@@ -1,6 +1,6 @@
 
 import { useSession, signIn } from "next-auth/react";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch } from "@/redux/hooks";
 import { addToCart, removeFromCart } from "@/redux/features/cart/CartSlice";
 import { Product } from "@/interface/IProducts";
 import LikeButton from "../LikeButton/LikeButton";
@@ -92,6 +92,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     const pathname = usePathname();
     const dispatch = useAppDispatch();
     const t = useTranslations("ProductsPageView");
+    const tCart = useTranslations("ShoppingCartView");
 
     const handleAddCart = () => {
         if (!session) return signIn();
@@ -118,13 +119,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <Title>{product.title}</Title>
             <Price>${product.price}</Price>
             <div className="flex gap-2 flex-wrap justify-center my-2">
-                <ButtonAddCart onClick={handleAddCart} disabled={pathname === "/cart" ? true : false}>{useTranslations("ProductsPageView")("cartButton")}</ButtonAddCart>
+                <ButtonAddCart onClick={handleAddCart} disabled={pathname === "/cart" ? true : false}>{t("cartButton")}</ButtonAddCart>
                 <LikeButton productId={product.id} />
                 <Link href={`/details/${product.id}`} passHref>
-                    <ButtonDetails>{useTranslations("ProductsPageView")("viewDetailsButton")}</ButtonDetails>
+                    <ButtonDetails>{t("viewDetailsButton")}</ButtonDetails>
                 </Link>
                 {session && pathname === "/cart" && (
-                    <button onClick={() => handleRemoveFromCart(product.id)} style={{ position: "absolute", top: "10px", right: "10px", color: "red"}}><BiTrash title={useTranslations("ShoppingCartView")("removeButton")} size={20} /></button>
+                    <button onClick={() => handleRemoveFromCart(product.id)} style={{ position: "absolute", top: "10px", right: "10px", color: "red"}}><BiTrash title={tCart("removeButton")} size={20} /></button>
                 )}
             </div>
         </Card>

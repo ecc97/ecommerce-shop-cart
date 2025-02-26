@@ -100,7 +100,7 @@ export default function LoginPage() {
     if (status === 'authenticated') {
       router.push('/products')
     }
-  }, [status])
+  }, [status, router])
 
   const handleLogin = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -127,6 +127,7 @@ export default function LoginPage() {
       }
 
     } catch (error) {
+      console.error(error)
       setError(traduction("someError"))
       setLoginState(initialLoginState)
     }

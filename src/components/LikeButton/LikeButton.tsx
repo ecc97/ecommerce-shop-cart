@@ -1,5 +1,4 @@
 import React, {useEffect} from "react";
-import { useSession } from "next-auth/react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { toggleLike, setLikes } from "@/redux/features/like/LikeSlice";
 import styled from "styled-components";
@@ -24,9 +23,9 @@ interface LikeButtonProps {
 }
 
 const LikeButton: React.FC<LikeButtonProps> = ({ productId }) => {
-  const { data: _session } = useSession();
   const dispatch = useAppDispatch();
   const isLiked = useAppSelector((state) => state.liker.likes[productId]);
+  const t = useTranslations("ProductsPageView");
   
 
   const handleToggleLike = () => {
@@ -42,7 +41,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ productId }) => {
 
   return (
     <LikeButtonStyled $liked={isLiked} onClick={handleToggleLike}>
-      {isLiked ? useTranslations("ProductsPageView")("unlikeButton") : useTranslations("ProductsPageView")("likeButton")}
+      {isLiked ? t("unlikeButton") : t("likeButton")}
     </LikeButtonStyled>
   );
 };
