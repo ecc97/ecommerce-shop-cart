@@ -3,9 +3,13 @@ import fs from "fs";
 import path from "path";
 import { IUser } from "@/interface/IUsers";
 
-const usersFilePath = path.join(__dirname, "users.json");
+const usersFilePath = path.join(process.cwd(), "src", "utils", "users.json");
 
 const readUsers = () => {
+    if (!fs.existsSync(usersFilePath)) {
+        console.warn("⚠️ Archivo users.json no encontrado, creando uno nuevo.");
+        return [];
+    }
     try {
         const data = fs.readFileSync(usersFilePath, "utf-8");
         return JSON.parse(data);
