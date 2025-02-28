@@ -4,18 +4,23 @@ import axios from "axios";
 import { Product } from "@/interface/IProducts";
 import Navbar from "@/components/Navbar/Navbar";
 import ProductDetailText from "@/components/ProductDetailText/ProductDetail";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const ProductDetails = ({ params }: { params: { id: string } }) => {
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
-
+    const { status } = useSession()
+    const router = useRouter()
+    
+    
     useEffect(() => {
         const getProduct = async (id: string) => {
             try {
                 const response = await axios.get(`/api/routes/products/${id}`);
                 const data = await response.data; 
                 setProduct(data);
-
+                
             } catch (error) {
                 console.error("Error al obtener el producto:", error);
                 return null; 
@@ -23,9 +28,13 @@ const ProductDetails = ({ params }: { params: { id: string } }) => {
                 setLoading(false);
             }
         };
-
+        
         getProduct(params.id);
     }, [params.id]);
+    
+    if (status === "unauthenticated") {
+        return router.push("/login")
+    }
 
     if (loading) {
         return <p>Cargando...</p>; 
