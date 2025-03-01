@@ -1,21 +1,21 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from 'bcryptjs';
-import { getUsers } from "@/utils/users";
+import { loginUser } from "@/utils/users";
 
 // const users = [
 //     { id: "1", email: "test@example.com", passwordHash: bcrypt.hashSync("password123", 10), language: "es", token: "my-token-fake-123" },
 // ];
-
-const users = getUsers()
-
 const authenticateUser = async (email: string, password: string) => {
-    const user = users.find(u => u.email === email);
-    if (user && await bcrypt.compare(password, user.passwordHash)) {
+    try {
+        const user = await loginUser(email, password);
         return { id: user.id, username: user.username, email: user.email, language: user.language, token: user.token };
+    } catch (error: unknown) {
+        const errorMessage = error as Error
+        console.error("Error de autenticación:", errorMessage);
+        return null;
     }
-    return null;
-}
+};
 
 const handler = NextAuth({
     providers: [
