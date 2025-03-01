@@ -1,11 +1,7 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-import bcrypt from 'bcryptjs';
 import { loginUser } from "@/utils/users";
 
-// const users = [
-//     { id: "1", email: "test@example.com", passwordHash: bcrypt.hashSync("password123", 10), language: "es", token: "my-token-fake-123" },
-// ];
 const authenticateUser = async (email: string, password: string) => {
     try {
         const user = await loginUser(email, password);

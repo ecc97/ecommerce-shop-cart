@@ -1,17 +1,16 @@
 import bcrypt from "bcryptjs";
-import fs from "fs";
-import path from "path";
 import jwt from "jsonwebtoken";
 import { IUser } from "@/interface/IUsers";
 import { supabase } from "../../supabase/supabase";
 
-export const registerUser = async (username: string, email: string, password: string, language: string = "es") => {
+export const registerUser = async (username: string, email: string, password: string, language: string = "es"): Promise<IUser | null> => {
     const { data: existingUser, error: findError } = await supabase
         .from("users")
         .select("id")
         .eq("email", email)
         .single();
-
+        
+    
     if (existingUser) {
         throw new Error("El email ya está registrado");
     }
@@ -19,6 +18,7 @@ export const registerUser = async (username: string, email: string, password: st
     if (findError && findError.code !== "PGRST116") {
         throw findError;
     }
+    
     
     const passwordHash = await bcrypt.hash(password, 10);
     
@@ -28,12 +28,13 @@ export const registerUser = async (username: string, email: string, password: st
         { username, email, password_hash: passwordHash, language, token}
     ]);
 
+    
     if (error) throw error;
     
-    return data;
+    return data! as IUser;
 };
 
-export const loginUser = async (email: string, password: string) => {
+export const loginUser = async (email: string, password: string): Promise<IUser> => {
     const { data, error } = await supabase
         .from("users")
         .select("*")
@@ -47,15 +48,17 @@ export const loginUser = async (email: string, password: string) => {
 
     const newToken = jwt.sign({ email }, process.env.JWT_SECRET || "default_secret_key", { expiresIn: "7d" });
 
-    await supabase.from("users").update({ token: newToken }).eq("id", data.id);
+    const { data: updatedUser, error: updateError } = await supabase.from("users").update({ token: newToken }).eq("id", data.id).select("*").single();
 
-    return { id: data.id, username: data.username, email: data.email, language: data.language, token: newToken };
+    if (updateError) throw updateError;
+
+    return updatedUser as IUser;
 };
 
-export const getUsers = async () => {
+export const getUsers = async (): Promise<IUser[]> => {
     const { data, error } = await supabase.from("users").select("*");
     if (error) throw error;
-    return data;
+    return data as IUser[];
 };
 
 

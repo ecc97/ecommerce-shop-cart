@@ -1,10 +1,5 @@
 import { NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
 import { registerUser } from "@/utils/users";
-
-// let users = [
-//     { id: "1", email: "test@example.com", passwordHash: bcrypt.hashSync("password123", 10), language: "es", token: "my-token-fake-123" },
-// ]
 
 export async function POST(req: Request) {
     try {
