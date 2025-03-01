@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 HubHobby
 
-## Getting Started
+Este es un proyecto de comercio electrónico con carrito de compras desarrollado con Next.js y TypeScript. Implementa autenticación, gestión de productos y carrito de compras, internacionalización y almacenamiento seguro de usuarios con Supabase.
 
-First, run the development server:
+## 🚀 Tecnologías Utilizadas
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- 🖥️ **Next.js 14** - Framework de React para aplicaciones web.
+- ⚛️ **React** - Biblioteca de JavaScript para la creación de interfaces de usuario.
+- 🟦 **TypeScript** - Superconjunto tipado de JavaScript.
+- 🎨 **Styled-Components** - Librería para estilos en componentes de React.
+- 🌊 **Tailwind CSS** - Framework de utilidades CSS.
+- 🔑 **Next-Auth** - Manejo de autenticación en Next.js.
+- 🔥 **Supabase** - Base de datos y autenticación de usuarios.
+- 🌍 **Next-Intl** - Para la internacionalización (inglés y español).
+- 🔗 **Axios** - Para realizar peticiones HTTP.
+- 🔐 **BcryptJS** - Para hashear/encriptar contraseñas al registrar.
+- 🔑 **JsonWebToken (JWT)** - Para generar tokens al registrar e iniciar sesión.
+- 🗂️ **Redux** - Para manejar el estado global, incluyendo carrito de compras y "me gusta" en productos.
+- ⚠️ **SweetAlert** - Para alertas y notificaciones visuales.
+- 🛍️ **Fake Store API** - API de terceros utilizada para obtener productos.
+
+## ✨ Funcionalidades
+
+### 🔑 Autenticación
+- Registro y login de usuarios con Supabase.
+- Hasheo de contraseñas con bcryptjs.
+- Generación de tokens JWT para sesiones seguras.
+- Manejo de sesiones con Next-Auth.
+
+### 🛒 Carrito de Compras
+- Agregar y eliminar productos del carrito con Redux.
+- Persistencia del carrito entre sesiones.
+
+### 🏷️ Gestión de Productos
+- Consumo de la API Fake Store para mostrar productos.
+- Posibilidad de dar "me gusta" a productos.
+- Visualización detallada de productos.
+
+### 🌐 Internacionalización
+- Cambio dinámico de idioma entre español e inglés con Next-Intl.
+
+## 🔧 Variables de Entorno
+
+Asegúrate de configurar las siguientes variables de entorno en un archivo `.env.local`:
+
+```env
+SUPABASE_URL=tu_supabase_url
+SUPABASE_ANON_KEY=tu_supabase_anon_key
+JWT_SECRET=tu_secreto_jwt
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📦 Instalación y Configuración
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. 📥 Clonar el repositorio:
+   ```sh
+   git clone https://github.com/tu_usuario/ecommerce-shop-cart.git
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. 📦 Instalar dependencias:
+   ```sh
+   cd ecommerce-shop-cart
+   npm install
+   # o
+   yarn install
+   ```
 
-## Learn More
+3. ⚙️ Configurar variables de entorno en `.env.local`.
 
-To learn more about Next.js, take a look at the following resources:
+4. ▶️ Ejecutar el servidor de desarrollo:
+   ```sh
+   npm run dev
+   # o
+   yarn dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Construcción y Despliegue
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Para construir el proyecto en modo producción:
 
-## Deploy on Vercel
+```sh
+npm run build
+# o
+yarn build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Para iniciar el servidor en producción:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```sh
+npm start
+# o
+yarn start
+```
+
+## 📜 Licencia
+
+Este proyecto está bajo la licencia MIT.
+
